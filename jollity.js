@@ -21,7 +21,7 @@ var maxPostId = base.data.posts[base.data.posts.length-1].id;
 base.data.posts.forEach(function(post) { collected[post.title] = [post.author_id] });
 base.data.tags.forEach(function(tag, i) { baseTagNames[tag.name] = tag.id });
 
-// push a post to base, and update posts_tags and tgas table
+// push a post to base, and update posts_tags and tags table
 function push(post, ref) {
 	// update post's attribute, and push
 	var oldId = post.id;

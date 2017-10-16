@@ -7,7 +7,7 @@
 	 - reset post's slug
 
 	Usage:
-		node putrefy.js <file.xml>
+		node putrefy.js <ghost-tmp.json> [new value of author_id]
 */
 var MAX_SLUG_LEN = 150; //ghost currently limit slug length to 150 in db, which is shorter than wordpress's 200 limit
 var MAX_POST_TITLE_LEN = 150; //ghost currently limit title length to 150 in db, while wordpress is unlimited
@@ -17,7 +17,7 @@ var SLUG_FROMID = true; // true, false, or prefix string
 
 var author_map = {
 	"1": {
-		"newValue": false, // !!!WARNNING - DONT USE!!! new author_id in ghost database, or set false to skip
+		"newValue": process.argv[3] || false, // !!!WARNNING - DONT USE!!! new author_id in ghost database, or set false to skip
 		"author_id": true, // a special value, or use newValue when set true, ignore false value
 		"created_by": true,
 		"published_by": true,
@@ -36,7 +36,7 @@ var updated_tags = {
 }
 
 if (process.argv.length < 3) {
-	console.error('Putrefy wordpress JSON to pretty import file of ghost\nUsage: \n\tnode putrefy.js <a .json by BlogsToWordpress>');
+	console.error('Putrefy wordpress JSON to pretty import file of ghost\nUsage: \n\tnode putrefy.js <a .json by BlogsToWordpress> [new value of author_id]');
 	process.exit();
 }
 
